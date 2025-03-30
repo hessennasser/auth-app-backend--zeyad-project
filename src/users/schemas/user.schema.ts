@@ -36,6 +36,10 @@ export class User {
   @Prop()
   sign: string;
 
+  @Prop()
+  @Prop({ type: Number, min: 0 })
+  weight: number;
+
   @Prop({ enum: Role, default: Role.User })
   role: Role;
 }

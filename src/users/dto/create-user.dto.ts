@@ -76,6 +76,11 @@ export class CreateUserDto {
   @IsString()
   sign?: string;
 
+  @ApiPropertyOptional({ description: 'Weight', example: 100 })
+  @IsOptional()
+  @IsString()
+  weight?: number;
+
   @ApiPropertyOptional({
     description: 'User role',
     enum: Role,
