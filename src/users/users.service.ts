@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import * as bcrypt from 'bcrypt';
 import { User, UserDocument } from './schemas/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -70,6 +69,33 @@ export class UsersService {
     }
 
     return updatedUser;
+  }
+
+  // Add a method to add certificate data to a user
+  async addCertificate(id: string, certificateData: any): Promise<User> {
+    const user = await this.userModel.findById(id).exec();
+
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    user.certificates.push(certificateData);
+    return user.save();
+  }
+
+  // Add a method to remove certificate data from a user
+  async removeCertificate(id: string, certificateId: string): Promise<User> {
+    const user = await this.userModel.findById(id).exec();
+
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    user.certificates = user.certificates.filter(
+      (cert) => cert._id.toString() !== certificateId,
+    );
+
+    return user.save();
   }
 
   async remove(id: string): Promise<User> {

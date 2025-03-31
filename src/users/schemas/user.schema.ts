@@ -1,6 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Role } from '../../common/enums/role.enum';
+import {
+  CertificateData,
+  CertificateDataSchema,
+} from './certificateData.schema';
 
 export type UserDocument = User & Document;
 
@@ -22,23 +26,14 @@ export class User {
   invoiceNo: string;
 
   @Prop()
-  authorizedBy: string;
-
-  @Prop()
   country: string;
-
-  @Prop()
-  hsCode: string;
-
-  @Prop()
-  issueDate: Date;
 
   @Prop()
   sign: string;
 
-  @Prop()
-  @Prop({ type: Number, min: 0 })
-  weight: number;
+  // Replace the individual fields with an array of certificate data objects
+  @Prop({ type: [CertificateDataSchema], default: [] })
+  certificates: CertificateData[];
 
   @Prop({ enum: Role, default: Role.User })
   role: Role;
