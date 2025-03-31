@@ -4,6 +4,7 @@ import {
   IsOptional,
   IsDate,
   IsEnum,
+  IsNumber,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Role } from '../../common/enums/role.enum';
@@ -78,7 +79,7 @@ export class CreateUserDto {
 
   @ApiPropertyOptional({ description: 'Weight', example: 100 })
   @IsOptional()
-  @IsString()
+  @IsNumber()
   weight?: number;
 
   @ApiPropertyOptional({
