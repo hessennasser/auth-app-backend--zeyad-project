@@ -34,10 +34,10 @@ export class CertificateDataDto {
   @Transform(({ value }) => new Date(value))
   issueDate?: Date;
 
-  @ApiPropertyOptional({ description: 'Weight', example: 100 })
+  @ApiPropertyOptional({ description: 'Weight', example: '100 KG' })
   @IsOptional()
-  @IsNumber()
-  weight?: number;
+  @IsString()
+  weight?: string;
 }
 
 export class CreateUserDto {
@@ -100,7 +100,7 @@ export class CreateUserDto {
         authorizedBy: '林佩怡',
         hsCode: '540769',
         issueDate: '2025-02-10T00:00:00Z',
-        weight: 100,
+        weight: '100 KG',
       },
     ],
   })
@@ -182,7 +182,7 @@ export class UpdateUserDto {
         authorizedBy: '林佩怡',
         hsCode: '540769',
         issueDate: '2025-02-10T00:00:00Z',
-        weight: 100,
+        weight: '100 KG',
       },
     ],
   })

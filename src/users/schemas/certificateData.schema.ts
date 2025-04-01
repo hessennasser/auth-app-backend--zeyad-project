@@ -21,8 +21,8 @@ export class CertificateData {
   @Prop()
   issueDate: Date;
 
-  @Prop({ type: Number, min: 0 })
-  weight: number;
+  @Prop()
+  weight: string;
 }
 
 export const CertificateDataSchema =
